@@ -10,7 +10,7 @@ public class PasswordValidator {
         boolean hasUpper = false;
         boolean hasDigit = false;
         boolean hasSpecial = false;
-        String specialChars = "!@#$%^&*()-_+=";
+        String specialChars = "!?@#";
 
         for (char c : password.toCharArray()) {
             if (Character.isLowerCase(c)) hasLower = true;
