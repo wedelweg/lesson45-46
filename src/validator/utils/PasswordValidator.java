@@ -15,10 +15,8 @@ public class PasswordValidator {
     );
 
     public static boolean isStrong(String password) {
-        //if (password == null) return false
         return password !=null
                 && password.length() >= 8
                 && RULES.stream().allMatch((rule -> rule.test(password)));
-        //return RULES.stream().allMatch(rule -> rule.test(password));
     }
 }

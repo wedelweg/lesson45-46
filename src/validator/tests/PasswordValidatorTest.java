@@ -17,7 +17,7 @@ public class PasswordValidatorTest {
 
     @Test
     void testSymbolsLessThan8(){
-        assertFalse(PasswordValidator.isStrong("Qwert0!"));
+            assertFalse(PasswordValidator.isStrong("Qwert0!"));
     }
 
     @Test
