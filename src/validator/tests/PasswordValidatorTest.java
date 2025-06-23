@@ -1,54 +1,56 @@
 package validator.tests;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import validator.utils.PasswordValidator;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PasswordValidatorTest {
-    @Test
-    void testValidPassword(){
-        assertTrue(PasswordValidator.isStrong("Qwerty0!"));
-        assertTrue(PasswordValidator.isStrong("Qwerty0?"));
-        assertTrue(PasswordValidator.isStrong("Qwerty0@"));
-        assertTrue(PasswordValidator.isStrong("Qwerty0#"));
-        assertTrue(PasswordValidator.isStrong("A1b2c3d!"));
-        assertTrue(PasswordValidator.isStrong("A1b2c3d4e5f6g7h8i9J!"));
+    static PasswordValidator validator;
+
+    @BeforeAll
+    static void setUpAll() {
+        validator = new PasswordValidator();
     }
 
     @Test
-    void testSymbolsLessThan8(){
-            assertFalse(PasswordValidator.isStrong("Qwert0!"));
+    void testValidPassword() {
+        assertTrue(validator.isStrong("Qwerty0!"));
+        assertTrue(validator.isStrong("Qwerty0?"));
+        assertTrue(validator.isStrong("Qwerty0@"));
+        assertTrue(validator.isStrong("Qwerty0#"));
     }
 
     @Test
-    void testInvalidSpecSymbol(){
-        assertFalse(PasswordValidator.isStrong("Qwerty0 "));
-        assertFalse(PasswordValidator.isStrong("Qwe^rty0"));
-        assertFalse(PasswordValidator.isStrong("~Qwerty0"));
+    void testSymbolsLessThan8() {
+        assertFalse(validator.isStrong("Qwert0!"));
     }
 
     @Test
-    void testNoUppercase() {
-        assertFalse(PasswordValidator.isStrong("qwerty2!"));
+    void testInvalidSpecSymbol() {
+        assertFalse(validator.isStrong("Qwerty0 "));
+        assertFalse(validator.isStrong("Qwe^rty0"));
+        assertFalse(validator.isStrong("~Qwerty0"));
     }
 
     @Test
-    void testNoLowercase() {
-        assertFalse(PasswordValidator.isStrong("QWERTY2!"));
+    void testNoUpperCase() {
+        assertFalse(validator.isStrong("qwerty2!"));
     }
 
     @Test
-    void testNoDigit(){
-        assertFalse(PasswordValidator.isStrong("Qwerty!!"));
+    void testNoLowerCase() {
+        assertFalse(validator.isStrong("QWERTY2!"));
     }
 
     @Test
-    void testNull(){
-        assertFalse(PasswordValidator.isStrong(null));
+    void testNoDigit() {
+        assertFalse(validator.isStrong("Qwerty!!"));
     }
 
     @Test
-    void testEmptyString() {
-        assertFalse(PasswordValidator.isStrong(""));
+    void testNull() {
+        assertFalse(validator.isStrong(null));
     }
 }

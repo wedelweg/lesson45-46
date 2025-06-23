@@ -9,14 +9,13 @@ public class PasswordValidator {
     private static final List<Predicate<String>> RULES = List.of(
             Pattern.compile(".*[A-Z].*").asPredicate(),
             Pattern.compile(".*[a-z].*").asPredicate(),
-            Pattern.compile(".*[0-9].*").asPredicate(),
-            Pattern.compile(".*[!?@#].*").asPredicate(),
-            Pattern.compile("^[a-zA-Z0-9!?@#]+$").asPredicate()
+            Pattern.compile(".*\\d.*").asPredicate(),
+            Pattern.compile(".*[!?@#].*").asPredicate()
     );
 
-    public static boolean isStrong(String password) {
-        return password !=null
+    public boolean isStrong(String password) {
+        return password != null
                 && password.length() >= 8
-                && RULES.stream().allMatch((rule -> rule.test(password)));
+                && RULES.stream().allMatch(rule -> rule.test(password));
     }
 }
