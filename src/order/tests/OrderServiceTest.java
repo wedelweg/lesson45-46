@@ -2,16 +2,14 @@ package order.tests;
 
 import order.model.Order;
 import order.service.OrderService;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class OrderServiceTest {
 
@@ -24,12 +22,10 @@ public class OrderServiceTest {
         expectedOrders = new ArrayList<>();
         expectedOrders.addAll(List.of(
                 new Order("Pizza", 15.0, LocalDateTime.now().minusDays(14)),
-                new Order("Sushi",6.0, LocalDateTime.now().minusDays(6)),
-                new Order("Salate",10.6,LocalDateTime.now())
+                new Order("Sushi", 6.0, LocalDateTime.now().minusDays(6)),
+                new Order("Salat", 10.6, LocalDateTime.now())
         ));
-
         expectedOrders.forEach(o -> orderService.addOrder(o));
-
     }
 
     @Test
@@ -45,19 +41,19 @@ public class OrderServiceTest {
     @Test
     void getAllOrders() {
         List<Order> actual = orderService.getAllOrders();
-        assertEquals(3,orderService.getSize());
+        assertEquals(3, orderService.getSize());
         assertArrayEquals(expectedOrders.toArray(), actual.toArray());
     }
 
     @Test
     void getSize() {
-        assertEquals(3,orderService.getSize());
+        assertEquals(3, orderService.getSize());
     }
 
     @Test
     void getOrderByName() {
         Order order = orderService.getOrderByName("Sushi");
-        assertEquals(6.0,order.getPrice());
+        assertEquals(6.0, order.getPrice());
         assertTrue(expectedOrders.contains(order));
     }
 }
